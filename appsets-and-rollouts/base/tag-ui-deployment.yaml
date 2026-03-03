@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tag-ui
+  labels:
+    app: tag-ui
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tag-ui
+  template:
+    metadata:
+      labels:
+        app: tag-ui
+    spec:
+      serviceAccountName: tag-ui
+      containers:
+        - name: tag-ui
+          # IMPORTANT: keep this image independent from the Harness-controlled rollouts-demo image tag.
+          image: ghcr.io/REPLACE_ME/rollouts-tag-ui:0.1.0
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: PORT
+              value: "8080"
+            - name: ROLLOUT_NAME
+              value: "canary"
+            - name: CONTAINER_NAME
+              value: "canary"
+            - name: POD_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+          ports:
+            - name: http
+              containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: /healthz
+              port: http
+            initialDelaySeconds: 2
+            periodSeconds: 5
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: http
+            initialDelaySeconds: 10
+            periodSeconds: 10

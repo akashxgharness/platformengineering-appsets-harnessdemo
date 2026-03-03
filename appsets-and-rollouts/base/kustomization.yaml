@@ -5,3 +5,8 @@ resources:
 - canary-service.yaml
 - canary-preview-service.yaml
 - canary-rollout.yaml
+- tag-ui-serviceaccount.yaml
+- tag-ui-role.yaml
+- tag-ui-rolebinding.yaml
+- tag-ui-deployment.yaml
+- tag-ui-service.yaml
