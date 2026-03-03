@@ -5,7 +5,7 @@ metadata:
 spec:
   generators:
   - git:
-      repoURL: https://github.com/danf425/platformengineering-appsets-harnessdemo.git
+      repoURL: https://github.com/akashxgharness/platformengineering-appsets-harnessdemo.git
       revision: HEAD
       files:
       - path: "appsets-and-rollouts/cluster-config/**/config.json"
@@ -19,7 +19,7 @@ spec:
     spec:
       project: 64eb4847
       source:
-        repoURL: https://github.com/danf425/platformengineering-appsets-harnessdemo.git
+        repoURL: https://github.com/akashxgharness/platformengineering-appsets-harnessdemo.git
         targetRevision: HEAD
         path: "appsets-and-rollouts/base"
         kustomize:
